@@ -577,7 +577,7 @@ input[type="tel"]:focus {
   .hero-grid { gap: 24px }
   .logo-link { margin-bottom: 84px }
   .hero-logo { width: 68px }
-  h1 { font-size: 23px; letter-spacing: -.3px; line-height: 1.2 }
+  h1 { font-size: 28px; letter-spacing: -.3px; line-height: 1.2 }
   .hero-bullets { gap: 6px; margin-top: 14px }
   .hero-bullets li { font-size: 13.5px }
 
