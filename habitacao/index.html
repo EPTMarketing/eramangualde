@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crédito Habitação | ERA Mangualde / Nelas</title>
+  <meta name="description" content="Encontre o Crédito Habitação mais vantajoso do mercado com a ERA Mangualde. Serviço gratuito, intermediário certificado. Receba as melhores propostas em 24 horas." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Crédito Habitação | ERA Mangualde / Nelas" />
+  <meta property="og:description" content="Encontre o Crédito Habitação mais vantajoso do mercado. Serviço gratuito, 100% online, intermediário certificado pelo Banco de Portugal." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="topo">
+      <div class="container hero-grid">
+
+        <!-- LEFT: content -->
+        <div class="hero-content">
+          <a href="index.html" class="logo-link" aria-label="ERA Mangualde">
+            <img src="logo.svg" alt="ERA Mangualde" class="hero-logo" />
+          </a>
+
+          <h1>Encontre o <b>Crédito Habitação</b> mais vantajoso do mercado</h1>
+
+          <ul class="hero-bullets">
+            <li><b>Acompanhamento 100% online</b></li>
+            <li><b>Serviço e suporte personalizado</b></li>
+            <li><b>Totalmente gratuito</b></li>
+            <li><b>Seguro e confidencial</b></li>
+            <li><b>Respostas rápidas</b></li>
+          </ul>
+
+
+        </div>
+
+        <!-- RIGHT: form -->
+        <div class="form-card" id="formulario">
+
+          <!-- Simulator -->
+          <div class="simulator-block">
+            <h2>Faça a sua simulação em 1 minuto !</h2>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="valor_imovel">Valor do imóvel</label>
+                <div class="slider-val-wrap">
+                  <input type="text" id="valor_imovel_display" class="slider-value-input" value="250 000" inputmode="numeric" />
+                  <span class="slider-currency">€</span>
+                </div>
+              </div>
+              <input type="range" id="valor_imovel" name="valor_imovel" min="50000" max="1000000" step="5000" value="250000" class="era-slider" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="valor_financiar">Valor a financiar ou transferir</label>
+                <div class="slider-val-wrap">
+                  <input type="text" id="valor_financiar_display" class="slider-value-input" value="250 000" inputmode="numeric" />
+                  <span class="slider-currency">€</span>
+                </div>
+              </div>
+              <input type="range" id="valor_financiar" name="valor_financiar" min="10000" max="1000000" step="5000" value="250000" class="era-slider" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="prazo">Prazo</label>
+                <div class="slider-val-wrap">
+                  <input type="text" id="prazo_display" class="slider-value-input" value="35" inputmode="numeric" />
+                  <span class="slider-currency">anos</span>
+                </div>
+              </div>
+              <input type="range" id="prazo" name="prazo" min="5" max="40" step="1" value="35" class="era-slider" />
+            </div>
+          </div>
+
+          <!-- Personal data form -->
+          <div class="dados-block">
+            <h3>Dados pessoais</h3>
+
+            <form name="eramangualdehabitacao" method="POST" data-netlify="true" action="/send.html" id="leadForm" novalidate>
+              <input type="hidden" name="form-name" value="eramangualdehabitacao" />
+              <input type="hidden" name="valor_imovel" id="hidden_valor_imovel" value="250000" />
+              <input type="hidden" name="valor_financiar" id="hidden_valor_financiar" value="250000" />
+              <input type="hidden" name="prazo" id="hidden_prazo" value="35" />
+
+              <div class="form-group">
+                <input type="text" id="nome" name="nome" placeholder="Nome *" required />
+                <small class="error-message"></small>
+              </div>
+
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="E-mail *" required />
+                <small class="error-message"></small>
+              </div>
+
+              <div class="form-group">
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone *" required />
+                <small class="error-message"></small>
+              </div>
+
+              <div class="checkbox-group">
+                <input type="checkbox" id="consentimento" name="consentimento" required />
+                <label for="consentimento">Dou consentimento ao tratamento de dados e aceito a <a href="#" class="consent-link">política de privacidade</a>.</label>
+              </div>
+              <small class="error-message checkbox-error"></small>
+
+              <button type="submit" class="submit-btn">Ver resultado da simulação de crédito</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ===== ABOUT / INTRO ===== -->
+    <section class="section about-section">
+      <div class="container">
+        <div class="about-text">
+          <h2>Negociamos com os nossos parceiros bancários para assegurar as condições mais vantajosas.</h2>
+          <p>Ajudamos a encontrar as melhores condições de crédito. Se está à procura de financiamento para comprar casa, mudar de habitação ou transferir o seu crédito atual, ajudamos a encontrar a melhor proposta entre diversas instituições financeiras, na qualidade de Intermediário de Crédito.</p>
+          <a href="#formulario" class="primary-btn">SIMULAÇÃO GRATUITA</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section process-section" id="processo">
+      <div class="container">
+        <h2>Como funciona</h2>
+        <p class="section-sub">Do primeiro contacto até à compra do seu imóvel, o processo resume-se a apenas 5 passos:</p>
+
+        <div class="steps-grid">
+
+          <article class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="22" height="22" rx="3"/><path d="M9 10h12M9 15h12M9 20h7"/></svg>
+            </div>
+            <h3>Recolhemos a sua informação e os documentos necessários</h3>
+          </article>
+
+          <article class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="15" cy="15" r="11"/><path d="M10 15l3.5 3.5L20 10"/></svg>
+            </div>
+            <h3>Enviamos a documentação para os bancos onde tem mais probabilidade de aprovação e fazemos a sua defesa</h3>
+          </article>
+
+          <article class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-6 4 4 6-8 6 4"/><circle cx="22" cy="8" r="2" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <h3>Recebemos as propostas dos bancos, avaliamos cada uma e recomendamos a opção mais vantajosa para si</h3>
+          </article>
+
+          <article class="step-card">
+            <div class="step-num">4</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4l2.5 5 5.5.8-4 3.9.94 5.47L15 16.5l-4.94 2.67L11 13.7 7 9.8l5.5-.8z"/></svg>
+            </div>
+            <h3>Escolhe a proposta com que pretende avançar e entrega-nos a documentação do imóvel</h3>
+          </article>
+
+          <article class="step-card">
+            <div class="step-num">5</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4L5 11v15h8v-7h4v7h8V11z"/></svg>
+            </div>
+            <h3>Assina a escritura do imóvel e torna-se proprietário da sua nova casa</h3>
+          </article>
+
+        </div>
+
+        <p class="steps-cta-text"><b>Como pode ver, é muito simples!</b> Se já tem um imóvel em vista, fale connosco. Cuidamos de todo o processo de intermediação do seu crédito habitação, de forma gratuita, sem burocracias e sem perda de tempo.</p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq-section" id="faq">
+      <div class="container faq-wrap">
+        <h2>Perguntas frequentes</h2>
+
+        <div class="accordion">
+          <div class="faq-item">
+            <button type="button" class="faq-question">Por que é que o serviço é gratuito?</button>
+            <div class="faq-answer"><p>É a nossa forma de atrair mais pessoas para trabalharem connosco. Mas não se preocupe, somos remunerados, apenas não é por si. Recebemos uma comissão do banco onde for aprovado o seu crédito habitação.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">Em quanto tempo consigo ter propostas?</button>
+            <div class="faq-answer"><p>Em 48 horas, após a recolha e confirmação de toda a sua documentação.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">Tenho que me deslocar a uma das vossas lojas para o processo?</button>
+            <div class="faq-answer"><p>Não, o nosso serviço é feito 100% online.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">Como posso saber que vocês são intermediários de crédito autorizados?</button>
+            <div class="faq-answer"><p>Porque somos uma entidade registada no Banco de Portugal com o nº 0007579. Pode verificar essa informação diretamente no site do Banco de Portugal.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">Garantem-me a confidencialidade e segurança dos meus dados e documentos?</button>
+            <div class="faq-answer"><p>Quando começamos a trabalhar, assinamos um documento que salvaguarda a sua confidencialidade de dados conforme a lei do RGPD.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">Posso transferir o meu crédito habitação atual?</button>
+            <div class="faq-answer"><p>Sim. Fazemos simulações e tratamos de todo o processo de transferência de crédito habitação para outro banco, de forma gratuita. Em muitos casos é possível reduzir significativamente a prestação mensal.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="info-legal">
+    <div class="container footer-grid">
+
+      <h3>Identificação do Intermediário de Crédito:</h3>
+      <p class="legal-text">PDREAMS, LDA | AMI: 21603 — Intermediário de crédito nº 0007579, registado no Banco de Portugal.</p>
+      <p class="legal-text">Simplefy, marca da IFT - Serviços Lda, registada no Banco de Portugal com o nº 0007443, como intermediário de crédito vinculado sem regime de exclusividade. A IFT - Serviços Lda., está autorizada a apresentar e propor contratos de crédito a consumidores, bem como a prestar assistência a consumidores, mediante a realização de atos preparatórios ou de outros trabalhos de gestão pré-contratual relativamente a contratos de crédito que não tenham sido por si apresentados ou propostos e, prestação de serviços de consultoria.</p>
+      <p class="legal-text"><strong>Instituições de Crédito Mutuante:</strong> Banco BPI, SA · Caixa Geral de Depósitos, SA · Banco Santander Totta, SA · Novo Banco, SA · Banco CTT, SA · Union de Créditos Inmobiliarios, SA, Establecimiento Financiero de Crédito (Sociedad Unipersonal) — Sucursal em Portugal · Abanca Corporatión Bancaria, SA — Sucursal em Portugal.</p>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <div class="footer-contact">
+            <p><strong>ERA Mangualde / Nelas</strong></p>
+            <p>Rua do Colégio, nº2 · <br>3530-184 Mangualde</p>
+            <p class="footer-policy"><a href="https://credito.marketing.era.pt/pt/era-mangualdenelas?l=962F4212-9D55-4A50-9E92-208536AF7AD4" style="text-decoration:none">Política de privacidade</a></p>
+          </div>
+          <div class="footer-hours">
+            <p class="footer-hours-title">Horário de funcionamento</p>
+            <ul class="footer-hours-list">
+              <li><span>Segunda-feira</span><span>09h30–18h00</span></li>
+              <li><span>Terça-feira</span><span>09h30–18h00</span></li>
+              <li><span>Quarta-feira</span><span>09h30–18h00</span></li>
+              <li><span>Quinta-feira</span><span>09h30–18h00</span></li>
+              <li><span>Sexta-feira</span><span>09h30–18h00</span></li>
+              <li class="closed"><span>Sábado</span><span>Encerrado</span></li>
+              <li class="closed"><span>Domingo</span><span>Encerrado</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+  <!-- Slider logic -->
+  <script>
+    function formatNum(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+    }
+    function updateSliderFill(slider) {
+      var min = parseFloat(slider.min);
+      var max = parseFloat(slider.max);
+      var val = parseFloat(slider.value);
+      var pct = ((val - min) / (max - min)) * 100;
+      slider.style.background =
+        'linear-gradient(to right, #C8102E 0%, #C8102E ' + pct + '%, #ddd ' + pct + '%, #ddd 100%)';
+    }
+    function initSlider(sliderId, displayId, hiddenId) {
+      var slider = document.getElementById(sliderId);
+      var display = document.getElementById(displayId);
+      var hidden = document.getElementById(hiddenId);
+      if (!slider) return;
+      var min = parseFloat(slider.min);
+      var max = parseFloat(slider.max);
+      var step = parseFloat(slider.step) || 1;
+
+      // Set initial fill
+      updateSliderFill(slider);
+
+      // Slider → display
+      slider.addEventListener('input', function () {
+        display.value = formatNum(slider.value);
+        if (hidden) hidden.value = slider.value;
+        updateSliderFill(slider);
+      });
+
+      // Display → slider: select all on focus for easy editing
+      display.addEventListener('focus', function () {
+        display.select();
+      });
+
+      // Display → slider: update on each keystroke (only digits)
+      display.addEventListener('input', function () {
+        // strip non-numeric characters for parsing
+        var raw = display.value.replace(/[^\d]/g, '');
+        var num = parseInt(raw, 10);
+        if (!isNaN(num)) {
+          var clamped = Math.min(Math.max(num, min), max);
+          // round to nearest step
+          clamped = Math.round(clamped / step) * step;
+          slider.value = clamped;
+          if (hidden) hidden.value = clamped;
+          updateSliderFill(slider);
+        }
+      });
+
+      // Display → slider: format nicely on blur
+      display.addEventListener('blur', function () {
+        var raw = display.value.replace(/[^\d]/g, '');
+        var num = parseInt(raw, 10);
+        if (isNaN(num) || num < min) {
+          slider.value = min;
+        } else if (num > max) {
+          slider.value = max;
+        } else {
+          var stepped = Math.round(num / step) * step;
+          slider.value = Math.min(Math.max(stepped, min), max);
+        }
+        display.value = formatNum(slider.value);
+        if (hidden) hidden.value = slider.value;
+        updateSliderFill(slider);
+      });
+
+      // Prevent form submission on Enter inside display input
+      display.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); display.blur(); }
+      });
+    }
+    initSlider('valor_imovel', 'valor_imovel_display', 'hidden_valor_imovel');
+    initSlider('valor_financiar', 'valor_financiar_display', 'hidden_valor_financiar');
+    initSlider('prazo', 'prazo_display', 'hidden_prazo');
+  </script>
+
+  <!-- GCLID Capture -->
+  <script>
+    (function() {
+      var gclid = new URLSearchParams(window.location.search).get('gclid');
+      if (gclid) {
+        var input = document.createElement('input');
+        input.type = 'hidden'; input.name = 'gclid'; input.value = gclid;
+        document.getElementById('leadForm').appendChild(input);
+      }
+    })();
+  </script>
+
+</body>
+</html>
