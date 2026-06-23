@@ -554,7 +554,7 @@ input[type="tel"]:focus {
   padding: 46px 34px;
 }
 .thankyou-logo { width: 100px; margin: 0 auto 28px }
-.thankyou-card h1 { font-size: 28px; line-height: 1.2; letter-spacing: -.4px; margin-bottom: 16px; color: var(--primary) }
+.thankyou-card h1 { font-size: 28px; line-height: 1.2; letter-spacing: -.4px; margin-bottom: 16px; color: var(--primary); max-width: 100%; text-align: center }
 .thankyou-card p { color: var(--muted); margin: 8px 0 }
 .thankyou-contact { margin: 22px 0 26px }
 .back-link { font-weight: 800; text-decoration: none; color: var(--accent) }
@@ -679,5 +679,5 @@ input[type="tel"]:focus {
 
   /* ── Thank you ── */
   .thankyou-card { padding: 32px 18px }
-  .thankyou-card h1 { font-size: 22px }
+  .thankyou-card h1 { font-size: 22px; max-width: 100%; text-align: center }
 }
