@@ -14,8 +14,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KTR9FM7G');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N754GLZDEM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N754GLZDEM');
+  </script>
 </head>
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTR9FM7G"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   
   <main>
@@ -58,18 +80,18 @@
                   <span class="slider-currency">€</span>
                 </div>
               </div>
-              <input type="range" id="valor_imovel" name="valor_imovel" min="50000" max="1000000" step="5000" value="250000" class="era-slider" />
+              <input type="range" id="valor_imovel" min="50000" max="1000000" step="5000" value="250000" class="era-slider" />
             </div>
 
             <div class="slider-group">
               <div class="slider-header">
-                <label for="valor_financiar">Valor a financiar ou transferir</label>
+                <label for="valor_financiar">Valor de financiamento desejado</label>
                 <div class="slider-val-wrap">
                   <input type="text" id="valor_financiar_display" class="slider-value-input" value="250 000" inputmode="numeric" />
                   <span class="slider-currency">€</span>
                 </div>
               </div>
-              <input type="range" id="valor_financiar" name="valor_financiar" min="10000" max="1000000" step="5000" value="250000" class="era-slider" />
+              <input type="range" id="valor_financiar" min="50000" max="1000000" step="5000" value="250000" class="era-slider" />
             </div>
 
             <div class="slider-group">
@@ -80,7 +102,7 @@
                   <span class="slider-currency">anos</span>
                 </div>
               </div>
-              <input type="range" id="prazo" name="prazo" min="5" max="40" step="1" value="35" class="era-slider" />
+              <input type="range" id="prazo" min="5" max="40" step="1" value="35" class="era-slider" />
             </div>
           </div>
 
@@ -93,6 +115,8 @@
               <input type="hidden" name="valor_imovel" id="hidden_valor_imovel" value="250000" />
               <input type="hidden" name="valor_financiar" id="hidden_valor_financiar" value="250000" />
               <input type="hidden" name="prazo" id="hidden_prazo" value="35" />
+              <input type="hidden" name="gclid" id="hidden_gclid" value="" />
+              <input type="hidden" name="fbclid" id="hidden_fbclid" value="" />
 
               <div class="form-group">
                 <input type="text" id="nome" name="nome" placeholder="Nome *" required />
@@ -111,7 +135,7 @@
 
               <div class="checkbox-group">
                 <input type="checkbox" id="consentimento" name="consentimento" required />
-                <label for="consentimento">Dou consentimento ao tratamento de dados e aceito a <a href="#" class="consent-link">política de privacidade</a>.</label>
+                <label for="consentimento">Dou consentimento ao tratamento de dados e aceito a <a href="https://credito.marketing.era.pt/pt/era-mangualdenelas?l=962F4212-9D55-4A50-9E92-208536AF7AD4" target="_blank" rel="noopener" class="consent-link">política de privacidade</a>.</label>
               </div>
               <small class="error-message checkbox-error"></small>
 
@@ -344,17 +368,66 @@
     initSlider('valor_imovel', 'valor_imovel_display', 'hidden_valor_imovel');
     initSlider('valor_financiar', 'valor_financiar_display', 'hidden_valor_financiar');
     initSlider('prazo', 'prazo_display', 'hidden_prazo');
+
+    // O valor a financiar nunca pode ultrapassar o valor do imóvel
+    // (mantém o "max" fixo em 1 000 000 nos dois sliders para a escala/posição
+    // visual continuar comparável entre eles; só o valor é limitado)
+    (function () {
+      var imovelSlider = document.getElementById('valor_imovel');
+      var imovelDisplay = document.getElementById('valor_imovel_display');
+      var financiarSlider = document.getElementById('valor_financiar');
+      var financiarDisplay = document.getElementById('valor_financiar_display');
+      var financiarHidden = document.getElementById('hidden_valor_financiar');
+      if (!imovelSlider || !financiarSlider) return;
+
+      function setFinanciar(valor) {
+        financiarSlider.value = valor;
+        financiarDisplay.value = formatNum(valor);
+        if (financiarHidden) financiarHidden.value = valor;
+        updateSliderFill(financiarSlider);
+      }
+
+      function clampFinanciarToImovel() {
+        var tetoImovel = parseFloat(imovelSlider.value);
+        if (parseFloat(financiarSlider.value) > tetoImovel) {
+          setFinanciar(tetoImovel);
+        }
+      }
+
+      // Se o valor do imóvel descer abaixo do financiamento atual, reduz o financiamento
+      imovelSlider.addEventListener('input', clampFinanciarToImovel);
+      imovelDisplay.addEventListener('input', clampFinanciarToImovel);
+      imovelDisplay.addEventListener('blur', clampFinanciarToImovel);
+
+      // Impede arrastar o próprio slider de financiamento acima do valor do imóvel
+      financiarSlider.addEventListener('input', function () {
+        var tetoImovel = parseFloat(imovelSlider.value);
+        if (parseFloat(financiarSlider.value) > tetoImovel) {
+          setFinanciar(tetoImovel);
+        }
+      });
+      financiarDisplay.addEventListener('blur', function () {
+        var tetoImovel = parseFloat(imovelSlider.value);
+        if (parseFloat(financiarSlider.value) > tetoImovel) {
+          setFinanciar(tetoImovel);
+        }
+      });
+
+      // Validação inicial
+      clampFinanciarToImovel();
+    })();
   </script>
 
-  <!-- GCLID Capture -->
+  <!-- GCLID / FBCLID Capture -->
   <script>
     (function() {
-      var gclid = new URLSearchParams(window.location.search).get('gclid');
-      if (gclid) {
-        var input = document.createElement('input');
-        input.type = 'hidden'; input.name = 'gclid'; input.value = gclid;
-        document.getElementById('leadForm').appendChild(input);
-      }
+      var params = new URLSearchParams(window.location.search);
+      var gclid = params.get('gclid');
+      var fbclid = params.get('fbclid');
+      var gclidField = document.getElementById('hidden_gclid');
+      var fbclidField = document.getElementById('hidden_fbclid');
+      if (gclid && gclidField) gclidField.value = gclid;
+      if (fbclid && fbclidField) fbclidField.value = fbclid;
     })();
   </script>
 
