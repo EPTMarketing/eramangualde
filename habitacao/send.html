@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- Google Tag Manager -->
@@ -35,7 +35,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Conversion event: lead submetido com sucesso -->
+  <!-- Conversion event: simulação submetida -->
   <script>
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({'event': 'lead_habitacao_submit'});
@@ -44,13 +44,250 @@
   <main class="thankyou-page">
     <div class="thankyou-card">
       <img src="logo.svg" alt="ERA Mangualde" class="thankyou-logo" />
-      <h1>Pedido enviado com sucesso!</h1>
-      <p>Obrigado pelo seu contacto. Iremos analisar o seu pedido e entrar em contacto consigo <strong>no prazo de 24 horas</strong>.</p>
-      <div class="thankyou-contact">
+
+      <!-- Resultado do simulador -->
+      <div class="sim-result-box">
+        <div class="sim-result-label">Prestação mensal estimada:</div>
+        <div class="sim-result-value"><span id="simPrestacao">—</span>€/mês</div>
+        <div class="sim-result-note">(Valor meramente indicativo. A prestação final depende da análise de crédito e das condições aprovadas).</div>
+      </div>
+
+      <!-- Formulário 2: pedido de propostas (aberto diretamente) -->
+      <div class="step2-wrap active" id="step2Wrap">
+        <div id="step2Form">
+          <!-- Bank logos -->
+          <div class="banks-carousel-wrap">
+            <div class="banks-track">
+              <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" style="max-height:40px" /></div>
+              <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" style="max-height:14px" /></div>
+              <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" style="max-height:15px" /></div>
+              <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" style="max-height:22px" /></div>
+              <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" style="max-height:16px" /></div>
+              <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" style="max-height:15px" /></div>
+              <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" style="max-height:40px" /></div>
+              <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" style="max-height:14px" /></div>
+              <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" style="max-height:15px" /></div>
+              <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" style="max-height:22px" /></div>
+              <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" style="max-height:16px" /></div>
+              <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" style="max-height:15px" /></div>
+            </div>
+          </div>
+
+          <div class="step2-title">Quer propostas dos bancos?</div>
+
+          <p class="step2-sub">Preencha o formulário. Receba aprovação de crédito e propostas de vários bancos em menos de 48 horas</p>
+
+          <form name="eramangualdehabitacao-propostas" id="propostasForm" method="POST" data-netlify="true" action="/habitacao/obrigado-propostas.html" novalidate>
+            <input type="hidden" name="form-name" value="eramangualdehabitacao-propostas" />
+            <input type="hidden" name="valor_financiar" id="p_valor_financiar" />
+            <input type="hidden" name="prazo" id="p_prazo" />
+            <input type="hidden" name="prestacao_estimada" id="p_prestacao" />
+
+            <fieldset class="step2-fieldset">
+              <legend>Situação financeira</legend>
+              <div class="step2-row">
+                <div class="form-group">
+                  <select name="situacao_profissional" required>
+                    <option value="" disabled selected>Situação profissional *</option>
+                    <option value="Conta de outrem - efetivo">Conta de outrem — efetivo</option>
+                    <option value="Conta de outrem - termo">Conta de outrem — a termo</option>
+                    <option value="Recibos verdes">Trabalhador independente</option>
+                    <option value="Empresario">Empresário / Sócio-gerente</option>
+                    <option value="Reformado">Reformado</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select name="titulares" required>
+                    <option value="" disabled selected>Nº de titulares *</option>
+                    <option value="1">1 titular</option>
+                    <option value="2">2 titulares</option>
+                    <option value="3+">3 ou mais</option>
+                  </select>
+                </div>
+              </div>
+              <div class="step2-row">
+                <div class="form-group">
+                  <input type="text" name="rendimento_liquido" placeholder="Rendimento líquido mensal (€) *" required />
+                  <small class="error-message"></small>
+                </div>
+                <div class="form-group">
+                  <select name="finalidade" required>
+                    <option value="" disabled selected>Finalidade *</option>
+                    <option value="1a habitacao">1ª habitação (própria/permanente)</option>
+                    <option value="2a habitacao">2ª habitação / secundária</option>
+                    <option value="transferencia">Transferência de crédito</option>
+                    <option value="investimento">Investimento / arrendamento</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="divida_mensal" placeholder="Valor em dívida mensal (financiamentos) — Opcional" />
+              </div>
+            </fieldset>
+
+            <fieldset class="step2-fieldset">
+              <legend>Dados pessoais</legend>
+              <div class="form-group">
+                <input type="text" id="p_nome" name="nome" placeholder="Nome completo *" required />
+                <small class="error-message"></small>
+              </div>
+              <div class="step2-row">
+                <div class="form-group">
+                  <input type="tel" id="p_telefone" name="telefone" placeholder="Telefone *" required />
+                  <small class="error-message"></small>
+                </div>
+                <div class="form-group">
+                  <input type="email" id="p_email" name="email" placeholder="E-mail *" required />
+                  <small class="error-message"></small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step2-fieldset">
+              <legend>Documentos (opcional nesta fase)</legend>
+              <ul class="step2-doc-list">
+                <li>Últimos 3 recibos de vencimento (ou 2 últimas declarações de IRS, se independente)</li>
+                <li>Última declaração de IRS + nota de liquidação</li>
+                <li>Comprovativo de morada recente</li>
+              </ul>
+              <label class="step2-file-label">
+                📎 Anexar documentos (PDF/JPG, opcional)
+                <input type="file" name="documentos" id="p_docs" multiple accept=".pdf,.jpg,.jpeg,.png" />
+              </label>
+              <div class="step2-file-name" id="p_docs_name"></div>
+              <div class="step2-file-hint">Pode também enviar mais tarde por e-mail, sem problema.</div>
+            </fieldset>
+
+            <fieldset class="step2-fieldset">
+              <legend>Informação adicional</legend>
+              <textarea class="step2-textarea" name="notas" placeholder="Algo que devamos saber sobre a sua situação? (opcional)"></textarea>
+            </fieldset>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="p_consentimento" name="consentimento" required />
+              <label for="p_consentimento">Dou consentimento ao tratamento dos meus dados para efeitos de intermediação de crédito e aceito a <a href="https://credito.marketing.era.pt/pt/era-mangualdenelas?l=962F4212-9D55-4A50-9E92-208536AF7AD4" target="_blank" rel="noopener" class="consent-link">política de privacidade</a>.</label>
+            </div>
+            <small class="error-message checkbox-error"></small>
+
+            <button type="submit" class="submit-btn" id="p_submitBtn" style="margin-top:14px">Enviar Pedido</button>
+            <div class="step2-error" id="step2ErrorMsg">Ocorreu um erro ao enviar. Tente novamente ou contacte-nos por telefone.</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Reassurance / trust bar -->
+      <div class="trust-bar">
+        <div class="trust-item">
+          <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+          <span class="trust-text">Sem compromisso</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+          <span class="trust-text">Dados 100% seguros</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span class="trust-text">Resposta em 48h</span>
+        </div>
+      </div>
+
+      <!-- Dados de contacto -->
+      <div class="thankyou-contact thankyou-contact--bottom">
         <p>ERA Mangualde / Nelas</p>
         <p>Rua do Colégio, nº2 · 3530-184 Mangualde</p>
       </div>
     </div>
   </main>
+
+  <script>
+  (function() {
+    // ===== Configuração do simulador =====
+    // ATENÇÃO: valores provisórios (copiados da simulação da DS) — substituir pelo
+    // spread e indexante aplicáveis ao crédito habitação da ERA Mangualde/Nelas.
+    var SPREAD = 0.8;       // %
+    var EURIBOR_6M = 2.621; // % (valor de referência — atualizar conforme cotação diária)
+    var TAN = SPREAD + EURIBOR_6M;
+
+    function calcPrestacao(capital, prazoAnos, taxaAnualPercent) {
+      var i = (taxaAnualPercent / 100) / 12;
+      var n = prazoAnos * 12;
+      if (i === 0) return capital / n;
+      return capital * i / (1 - Math.pow(1 + i, -n));
+    }
+    function formatEuro(n) {
+      return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+    }
+
+    var capital = parseFloat(sessionStorage.getItem('sim_valor_financiar')) || 250000;
+    var prazo = parseFloat(sessionStorage.getItem('sim_prazo')) || 35;
+    var prestacao = calcPrestacao(capital, prazo, TAN);
+
+    document.getElementById('simPrestacao').textContent = formatEuro(prestacao);
+    document.getElementById('p_valor_financiar').value = capital;
+    document.getElementById('p_prazo').value = prazo;
+    document.getElementById('p_prestacao').value = Math.round(prestacao);
+
+    // Pré-preenche dados já fornecidos no 1º formulário
+    var nome = sessionStorage.getItem('sim_nome');
+    var telefone = sessionStorage.getItem('sim_telefone');
+    var email = sessionStorage.getItem('sim_email');
+    if (nome) document.getElementById('p_nome').value = nome;
+    if (telefone) document.getElementById('p_telefone').value = telefone;
+    if (email) document.getElementById('p_email').value = email;
+
+    // Mostra o nome do(s) ficheiro(s) selecionado(s)
+    var docsInput = document.getElementById('p_docs');
+    if (docsInput) {
+      docsInput.addEventListener('change', function() {
+        var files = this.files;
+        var nameEl = document.getElementById('p_docs_name');
+        if (files.length === 0) { nameEl.textContent = ''; return; }
+        nameEl.textContent = files.length === 1
+          ? files[0].name
+          : files.length + ' ficheiros selecionados';
+      });
+    }
+
+    // ===== Validação e submissão do 2º formulário =====
+    var form = document.getElementById('propostasForm');
+    form.querySelectorAll('input, select, textarea').forEach(function(field) {
+      field.addEventListener('input', function() {
+        var group = field.closest('.form-group, .checkbox-group');
+        if (group) group.classList.remove('error');
+      });
+      field.addEventListener('change', function() {
+        var group = field.closest('.form-group, .checkbox-group');
+        if (group) group.classList.remove('error');
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      form.querySelectorAll('.form-group.error, .checkbox-group.error').forEach(function(el) {
+        el.classList.remove('error');
+      });
+      document.getElementById('step2ErrorMsg').style.display = 'none';
+
+      var required = form.querySelectorAll('[required]');
+      var valid = true;
+      required.forEach(function(field) {
+        if ((field.type === 'checkbox' && !field.checked) || (field.type !== 'checkbox' && !field.value.trim())) {
+          valid = false;
+          var group = field.closest('.form-group, .checkbox-group');
+          if (group) group.classList.add('error');
+        }
+      });
+      if (!valid) {
+        e.preventDefault();
+        document.getElementById('step2ErrorMsg').textContent = 'Por favor preencha todos os campos obrigatórios.';
+        document.getElementById('step2ErrorMsg').style.display = 'block';
+        return;
+      }
+
+      var submitBtn = document.getElementById('p_submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'A enviar...';
+    });
+  })();
+  </script>
 </body>
 </html>

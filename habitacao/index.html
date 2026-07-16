@@ -431,5 +431,22 @@
     })();
   </script>
 
+  <!-- Guarda dados do simulador para a página de agradecimento (não altera o formulário) -->
+  <script>
+    (function() {
+      var form = document.getElementById('leadForm');
+      if (!form) return;
+      form.addEventListener('submit', function() {
+        try {
+          sessionStorage.setItem('sim_valor_financiar', document.getElementById('hidden_valor_financiar').value);
+          sessionStorage.setItem('sim_prazo', document.getElementById('hidden_prazo').value);
+          sessionStorage.setItem('sim_nome', document.getElementById('nome').value);
+          sessionStorage.setItem('sim_telefone', document.getElementById('telefone').value);
+          sessionStorage.setItem('sim_email', document.getElementById('email').value);
+        } catch (e) {}
+      });
+    })();
+  </script>
+
 </body>
 </html>
