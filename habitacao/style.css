@@ -529,7 +529,41 @@ input[type="tel"]:focus {
 .footer h3 { color: #fff; font-size: 16px; margin: 0 0 12px; font-weight: 700 }
 .footer a { color: #fff }
 .legal-text { font-size: 12.5px; line-height: 1.65; color: rgba(255,255,255,.75); margin: 0 0 10px; width: 100% }
-.footer-bottom { display: block; margin-top: 28px; border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px }
+.legal-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.16) }
+.legal-col { min-width: 0 }
+.legal-fade-wrap { position: relative }
+.legal-fade-content { max-height: 190px; overflow: hidden; position: relative; transition: max-height .3s ease }
+.legal-fade-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 34px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(37,14,98,0), var(--primary));
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.legal-fade-wrap.expanded .legal-fade-content { max-height: 2000px }
+.legal-fade-wrap.expanded::after { opacity: 0 }
+.legal-fade-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.legal-fade-chevron {
+  width: 12px; height: 12px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+  transition: transform .2s ease;
+}
+.legal-fade-wrap.expanded .legal-fade-chevron { transform: rotate(225deg) }
+.footer-bottom { display: block; margin-top: 28px; padding-top: 22px }
 .footer-bottom-inner { display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap }
 .footer-contact { display: flex; flex-direction: column; gap: 4px }
 .footer-contact p { margin: 0; color: #fff }
@@ -669,6 +703,7 @@ input[type="tel"]:focus {
   .footer { padding: 36px 0 }
   .footer h3 { font-size: 14px; text-align: center }
   .legal-text { font-size: 11px; line-height: 1.6; text-align: center }
+  .legal-two-col { grid-template-columns: 1fr; gap: 28px }
   .footer-bottom-inner { flex-direction: column; align-items: center; gap: 20px }
   .footer-contact { align-items: center; text-align: center }
   .footer-contact p { font-size: 13px }

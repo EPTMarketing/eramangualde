@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const legalToggle = document.getElementById('legal-fade-toggle');
+  const legalWrap = document.getElementById('legal-fade-wrap');
+
+  if (legalToggle && legalWrap) {
+    legalToggle.addEventListener('click', function () {
+      const isExpanded = legalWrap.classList.toggle('expanded');
+      legalToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    });
+  }
+
   const form = document.getElementById('leadForm');
   const faqItems = document.querySelectorAll('.faq-item');
 
