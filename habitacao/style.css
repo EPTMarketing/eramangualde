@@ -618,7 +618,7 @@ input[type="tel"]:focus {
   /* ── Form card ── */
   .form-card { border-radius: 14px }
   .simulator-block { padding: 16px 14px 12px }
-  .simulator-block h2 { font-size: 16px; margin-bottom: 30px; margin-top: 12px }
+  .simulator-block h2 { font-size: 18px; margin-bottom: 30px; margin-top: 12px }
   .dados-block { padding: 16px 14px 18px }
   .dados-block h3 { font-size: 14px; margin-bottom: 12px }
 
