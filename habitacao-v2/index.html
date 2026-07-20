@@ -77,13 +77,15 @@
             </div>
           </div>
 
-          <form name="eramangualdehabitacao" method="POST" data-netlify="true" action="/habitacao/send.html" id="leadForm" novalidate>
+          <form name="eramangualdehabitacao" method="POST" data-netlify="true" action="/habitacao-v2/send.html" id="leadForm" novalidate>
             <input type="hidden" name="form-name" value="eramangualdehabitacao" />
             <input type="hidden" name="valor_imovel" id="hidden_valor_imovel" value="250000" />
             <input type="hidden" name="valor_financiar" id="hidden_valor_financiar" value="250000" />
             <input type="hidden" name="prazo" id="hidden_prazo" value="35" />
             <input type="hidden" name="gclid" id="hidden_gclid" value="" />
             <input type="hidden" name="fbclid" id="hidden_fbclid" value="" />
+            <input type="hidden" name="lead_score" id="hidden_lead_score" value="" />
+            <input type="hidden" name="qualificacao" id="hidden_qualificacao" value="" />
 
             <!-- PASSO 1 -->
             <div class="wizard-step active" data-step="1">
@@ -119,22 +121,22 @@
                 <h2 class="wizard-q">Em que fase está o seu imóvel?</h2>
                 <div class="option-grid option-grid--1col form-group">
                   <label class="option-card">
-                    <input type="radio" name="fase_imovel" value="Já tenho imóvel escolhido (CPCV assinado)" required />
+                    <input type="radio" name="fase_imovel" value="Já tenho imóvel escolhido (CPCV assinado)" data-weight="3" required />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c2-3 3-4.5 4-4.5s1 2 2.3 2S12 13 13.5 13s1.2 3 2.6 3 2-2 3.9-2"/><path d="M14 5l4.5 4.5L21 7 16.5 2.5 14 5z"/><path d="M12.5 6.5L4 15v3h3l8.5-8.5"/></svg></span>
                     <span class="option-text"><span class="option-title">Já tenho imóvel escolhido (CPCV assinado)</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="fase_imovel" value="Estou a visitar imóveis (em negociação)" required />
+                    <input type="radio" name="fase_imovel" value="Estou a visitar imóveis (em negociação)" data-weight="2" required />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg></span>
                     <span class="option-text"><span class="option-title">Estou a visitar imóveis (em negociação)</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="fase_imovel" value="Ainda a pesquisar, sem imóvel definido" required />
+                    <input type="radio" name="fase_imovel" value="Ainda a pesquisar, sem imóvel definido" data-weight="1" required />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-4 2 2-6z"/></svg></span>
                     <span class="option-text"><span class="option-title">Ainda a pesquisar, sem imóvel definido</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="fase_imovel" value="Só quero mais informações" required />
+                    <input type="radio" name="fase_imovel" value="Só quero mais informações" data-weight="0" required />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5H9l-4 3.5v-3.5H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
                     <span class="option-text"><span class="option-title">Só quero mais informações</span></span>
                   </label>
@@ -145,22 +147,22 @@
                 <h2 class="wizard-q">Qual é o motivo da transferência?</h2>
                 <div class="option-grid option-grid--1col form-group">
                   <label class="option-card">
-                    <input type="radio" name="motivo_transferencia" value="Quero reduzir a prestação mensal" />
+                    <input type="radio" name="motivo_transferencia" value="Quero reduzir a prestação mensal" data-weight="3" />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M4 15l5-5 4 4 7-7"/><path d="M15 7h5v5"/></svg></span>
                     <span class="option-text"><span class="option-title">Quero reduzir a prestação mensal</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="motivo_transferencia" value="Quero mudar para taxa fixa" />
+                    <input type="radio" name="motivo_transferencia" value="Quero mudar para taxa fixa" data-weight="2" />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15.5h6"/></svg></span>
                     <span class="option-text"><span class="option-title">Quero mudar para taxa fixa</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="motivo_transferencia" value="Estou insatisfeito(a) com o banco atual" />
+                    <input type="radio" name="motivo_transferencia" value="Estou insatisfeito(a) com o banco atual" data-weight="2" />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L21.5 20h-19z"/><path d="M12 9.5v4.2"/><circle cx="12" cy="16.8" r="0.15" fill="currentColor" stroke="currentColor"/></svg></span>
                     <span class="option-text"><span class="option-title">Estou insatisfeito(a) com o banco atual</span></span>
                   </label>
                   <label class="option-card">
-                    <input type="radio" name="motivo_transferencia" value="Só quero comparar, sem urgência" />
+                    <input type="radio" name="motivo_transferencia" value="Só quero comparar, sem urgência" data-weight="0" />
                     <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5H9l-4 3.5v-3.5H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
                     <span class="option-text"><span class="option-title">Só quero comparar, sem urgência</span></span>
                   </label>
@@ -171,10 +173,10 @@
 
             <!-- PASSO 3 -->
             <div class="wizard-step" data-step="3">
-              <h2 class="wizard-q">Calcule a sua mensalidade estimada</h2>
+              <h2 class="wizard-q" id="step3Title">Calcule a sua mensalidade estimada</h2>
               <div class="simulator-block">
 
-                <div class="slider-group">
+                <div class="slider-group" id="grupoValorImovel">
                   <div class="slider-header">
                     <label for="valor_imovel">Valor do imóvel</label>
                     <div class="slider-val-wrap">
@@ -187,7 +189,7 @@
 
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="valor_financiar">Valor de financiamento desejado</label>
+                    <label for="valor_financiar" id="labelValorFinanciar">Valor de financiamento desejado</label>
                     <div class="slider-val-wrap">
                       <input type="text" id="valor_financiar_display" class="slider-value-input" value="250 000" inputmode="numeric" />
                       <span class="slider-currency">€</span>
@@ -198,7 +200,7 @@
 
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="prazo">Prazo</label>
+                    <label for="prazo" id="labelPrazo">Prazo</label>
                     <div class="slider-val-wrap">
                       <input type="text" id="prazo_display" class="slider-value-input" value="35" inputmode="numeric" />
                       <span class="slider-currency">anos</span>
@@ -264,6 +266,12 @@
                 </label>
               </div>
 
+              <div class="form-group" id="outraSituacaoWrap" hidden>
+                <label class="field-label" for="situacao_outra">Qual é a sua situação? *</label>
+                <input type="text" id="situacao_outra" name="situacao_outra" placeholder="Descreva a situação profissional" />
+                <small class="error-message"></small>
+              </div>
+
               <div class="titular2-wrap" id="titular2Wrap" hidden>
                 <h4 class="titular2-title">2º titular</h4>
 
@@ -286,6 +294,12 @@
                     </select>
                     <small class="error-message"></small>
                   </div>
+                </div>
+
+                <div class="form-group" id="outraSituacaoWrapT2" hidden>
+                  <label class="field-label" for="situacao_outra2">Qual é a situação do 2º titular? *</label>
+                  <input type="text" id="situacao_outra2" name="situacao_outra2" placeholder="Descreva a situação profissional" />
+                  <small class="error-message"></small>
                 </div>
               </div>
             </div>
@@ -317,12 +331,12 @@
               <div class="wizard-field-label">Tem incidentes bancários registados (Banco de Portugal)? *</div>
               <div class="option-grid option-grid--simnao form-group">
                 <label class="option-card">
-                  <input type="radio" name="incidentes" value="Não" required />
+                  <input type="radio" name="incidentes" value="Não" data-weight="0" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-5"/></svg></span>
                   <span class="option-text"><span class="option-title">Não</span></span>
                 </label>
                 <label class="option-card">
-                  <input type="radio" name="incidentes" value="Sim" required />
+                  <input type="radio" name="incidentes" value="Sim" data-weight="-2" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L21.5 20h-19z"/><path d="M12 9.5v4.2"/><circle cx="12" cy="16.8" r="0.15" fill="currentColor" stroke="currentColor"/></svg></span>
                   <span class="option-text"><span class="option-title">Sim</span></span>
                 </label>
@@ -334,22 +348,22 @@
               <h2 class="wizard-q">Quando pretende avançar?</h2>
               <div class="option-grid option-grid--1col form-group">
                 <label class="option-card">
-                  <input type="radio" name="timing" value="Imediatamente, já tenho tudo pronto" required />
+                  <input type="radio" name="timing" value="Imediatamente, já tenho tudo pronto" data-weight="3" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10.5 22 19.5 10H13z"/></svg></span>
                   <span class="option-text"><span class="option-title">Imediatamente, já tenho tudo pronto</span></span>
                 </label>
                 <label class="option-card">
-                  <input type="radio" name="timing" value="Nos próximos 30 dias" required />
+                  <input type="radio" name="timing" value="Nos próximos 30 dias" data-weight="2" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></span>
                   <span class="option-text"><span class="option-title">Nos próximos 30 dias</span></span>
                 </label>
                 <label class="option-card">
-                  <input type="radio" name="timing" value="Nos próximos 3 meses" required />
+                  <input type="radio" name="timing" value="Nos próximos 3 meses" data-weight="1" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 14h8"/></svg></span>
                   <span class="option-text"><span class="option-title">Nos próximos 3 meses</span></span>
                 </label>
                 <label class="option-card">
-                  <input type="radio" name="timing" value="Ainda estou só a planear" required />
+                  <input type="radio" name="timing" value="Ainda estou só a planear" data-weight="0" required />
                   <span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5c-1.5-1.3-3.7-2-6.5-2v13c2.8 0 5 .7 6.5 2 1.5-1.3 3.7-2 6.5-2v-13c-2.8 0-5 .7-6.5 2z"/><path d="M12 6.5v13"/></svg></span>
                   <span class="option-text"><span class="option-title">Ainda estou só a planear</span></span>
                 </label>
@@ -649,6 +663,7 @@
       var financiarSlider = document.getElementById('valor_financiar');
       var financiarDisplay = document.getElementById('valor_financiar_display');
       var financiarHidden = document.getElementById('hidden_valor_financiar');
+      var grupoValorImovelEl = document.getElementById('grupoValorImovel');
       if (!imovelSlider || !financiarSlider) return;
 
       function setFinanciar(valor) {
@@ -659,6 +674,10 @@
       }
 
       function clampFinanciarToImovel() {
+        // Em "Transferência" o grupo do valor do imóvel fica escondido e o campo
+        // de financiamento passa a representar o capital em dívida atual — não
+        // faz sentido limitá-lo ao valor (oculto) do imóvel.
+        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
         var tetoImovel = parseFloat(imovelSlider.value);
         if (parseFloat(financiarSlider.value) > tetoImovel) {
           setFinanciar(tetoImovel);
@@ -672,12 +691,14 @@
 
       // Impede arrastar o próprio slider de financiamento acima do valor do imóvel
       financiarSlider.addEventListener('input', function () {
+        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
         var tetoImovel = parseFloat(imovelSlider.value);
         if (parseFloat(financiarSlider.value) > tetoImovel) {
           setFinanciar(tetoImovel);
         }
       });
       financiarDisplay.addEventListener('blur', function () {
+        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
         var tetoImovel = parseFloat(imovelSlider.value);
         if (parseFloat(financiarSlider.value) > tetoImovel) {
           setFinanciar(tetoImovel);
@@ -747,8 +768,42 @@
         titular2Wrap.hidden = !isDois;
         if (rendimento2) rendimento2.required = !!isDois;
         if (situacao2Select) situacao2Select.required = !!isDois;
+        if (!isDois && outraWrapT2) {
+          outraWrapT2.hidden = true;
+          if (outraInputT2) { outraInputT2.required = false; outraInputT2.value = ''; }
+        }
       }
       if (titularesSelect) titularesSelect.addEventListener('change', toggleTitular2);
+
+      // --- "Outra situação" profissional: pede para descrever (1º e 2º titular) ---
+      var outraWrap = document.getElementById('outraSituacaoWrap');
+      var outraInput = document.getElementById('situacao_outra');
+      function toggleOutraSituacao() {
+        var checked = form.querySelector('input[name="situacao_profissional"]:checked');
+        var show = checked && checked.value === 'Outra situação';
+        if (!outraWrap) return;
+        outraWrap.hidden = !show;
+        if (outraInput) {
+          outraInput.required = !!show;
+          if (!show) outraInput.value = '';
+        }
+      }
+      form.querySelectorAll('input[name="situacao_profissional"]').forEach(function (r) {
+        r.addEventListener('change', toggleOutraSituacao);
+      });
+
+      var outraWrapT2 = document.getElementById('outraSituacaoWrapT2');
+      var outraInputT2 = document.getElementById('situacao_outra2');
+      function toggleOutraSituacaoT2() {
+        var show = situacao2Select && situacao2Select.value === 'Outra situação';
+        if (!outraWrapT2) return;
+        outraWrapT2.hidden = !show;
+        if (outraInputT2) {
+          outraInputT2.required = !!show;
+          if (!show) outraInputT2.value = '';
+        }
+      }
+      if (situacao2Select) situacao2Select.addEventListener('change', toggleOutraSituacaoT2);
 
       // --- Mostra o campo de prestações apenas se houver outros créditos (passo 5) ---
       var temCreditosRadios = form.querySelectorAll('input[name="tem_creditos"]');
@@ -780,6 +835,20 @@
         });
       }
 
+      // --- Adapta o passo 3 (simulador) quando o objetivo é "Transferência":
+      // não faz sentido perguntar o valor do imóvel, só o capital em dívida ---
+      var step3Title = document.getElementById('step3Title');
+      var grupoValorImovel = document.getElementById('grupoValorImovel');
+      var labelValorFinanciar = document.getElementById('labelValorFinanciar');
+      var labelPrazo = document.getElementById('labelPrazo');
+
+      function updateStep3Branch(isTransferencia) {
+        if (grupoValorImovel) grupoValorImovel.hidden = isTransferencia;
+        if (labelValorFinanciar) labelValorFinanciar.textContent = isTransferencia ? 'Capital em dívida atual' : 'Valor de financiamento desejado';
+        if (labelPrazo) labelPrazo.textContent = isTransferencia ? 'Prazo restante do crédito' : 'Prazo';
+        if (step3Title) step3Title.textContent = isTransferencia ? 'Indique o capital em dívida atual' : 'Calcule a sua mensalidade estimada';
+      }
+
       function updateStep2Variant() {
         var checked = form.querySelector('input[name="objetivo"]:checked');
         var isTransferencia = checked && checked.value === 'Transferência';
@@ -790,6 +859,7 @@
           variantEl.classList.toggle('active', shouldShow);
           setVariantRequired(variantEl, shouldShow);
         });
+        updateStep3Branch(isTransferencia);
       }
       objetivoRadios.forEach(function (r) {
         r.addEventListener('change', updateStep2Variant);
