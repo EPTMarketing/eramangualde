@@ -891,19 +891,25 @@ input[type="number"]:focus { border-color: var(--primary); box-shadow: 0 0 0 2px
   .slider-value-input {
     width: 100px !important;
     height: 22px;
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-weight: 600;
     padding: 0 5px;
   }
   .slider-currency { font-size: 11px; width: 24px }
   .slider-group { margin-bottom: 10px }
 
-  /* Form inputs */
+  /* Form inputs — 16px mínimo para o iOS Safari não fazer zoom automático ao focar */
   .form-group { margin-bottom: 10px }
   .form-group input {
-    font-size: 14px;
+    font-size: 16px;
     padding: 12px 14px;
     border-radius: 10px;
+  }
+  select { font-size: 16px }
+  .wizard-step--spacious input[type="text"],
+  .wizard-step--spacious input[type="tel"],
+  .wizard-step--spacious input[type="email"] {
+    font-size: 16px;
   }
   .submit-btn {
     font-size: 14px;
