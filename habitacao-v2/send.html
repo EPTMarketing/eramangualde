@@ -26,7 +26,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-N754GLZDEM');
-    gtag('event', 'conversion_lead_habitacao_v2');
+    gtag('event', 'generate_lead', { event_category: 'simulacao_habitacao', event_label: 'crm_habitacao' });
   </script>
 </head>
 <body class="thankyou-body">
@@ -36,10 +36,10 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Conversion event: pedido de simulação submetido -->
+  <!-- Conversion event: simulação submetida -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({'event': 'lead_habitacao_v2_submit'});
+    dataLayer.push({'event': 'lead_habitacao_submit'});
   </script>
 
   <main class="thankyou-page">
@@ -53,24 +53,24 @@
       <div class="sim-result-box">
         <div class="sim-result-label">Prestação mensal estimada:</div>
         <div class="sim-result-value"><span id="simPrestacao">—</span>€/mês</div>
-        <div class="sim-result-note">(Valor meramente indicativo. A prestação final depende da análise de crédito e das condições aprovadas por cada banco).</div>
+        <div class="sim-result-note">(Valor meramente indicativo. A prestação final depende da análise de crédito e das condições aprovadas).</div>
       </div>
 
       <!-- Bank logos -->
       <div class="banks-carousel-wrap">
         <div class="banks-track">
-          <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" style="max-height:40px" /></div>
-          <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" style="max-height:14px" /></div>
-          <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" style="max-height:15px" /></div>
-          <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" style="max-height:22px" /></div>
-          <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" style="max-height:16px" /></div>
-          <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" style="max-height:15px" /></div>
-          <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" style="max-height:40px" /></div>
-          <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" style="max-height:14px" /></div>
-          <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" style="max-height:15px" /></div>
-          <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" style="max-height:22px" /></div>
-          <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" style="max-height:16px" /></div>
-          <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" style="max-height:15px" /></div>
+          <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" /></div>
+          <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" /></div>
+          <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" /></div>
+          <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" /></div>
+          <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" /></div>
+          <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" /></div>
+          <div class="bank-logo-item"><img src="bank-cgd.png" alt="CGD" /></div>
+          <div class="bank-logo-item"><img src="bank-novobanco.png" alt="Novo Banco" /></div>
+          <div class="bank-logo-item"><img src="bank-santander.png" alt="Santander" /></div>
+          <div class="bank-logo-item"><img src="bank-bpi.png" alt="BPI" /></div>
+          <div class="bank-logo-item"><img src="bank-uci.png" alt="UCI" /></div>
+          <div class="bank-logo-item"><img src="bank-abanca.png" alt="Abanca" /></div>
         </div>
       </div>
 
@@ -99,21 +99,38 @@
 
       <!-- Dados de contacto -->
       <div class="thankyou-contact thankyou-contact--bottom">
-        <p><strong>ERA Mangualde / Nelas</strong></p>
+        <p>ERA Mangualde / Nelas</p>
         <p>Rua do Colégio, nº2 · 3530-184 Mangualde</p>
-        <p><a href="tel:+351232623310">232 623 310</a></p>
       </div>
     </div>
   </main>
 
   <script>
   (function() {
-    function formatEuro(n) {
-      return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    // ===== Configuração do simulador =====
+    // ATENÇÃO: valores provisórios — substituir pelo spread e indexante
+    // aplicáveis ao crédito habitação da ERA Mangualde/Nelas.
+    var SPREAD = 0.8;       // %
+    var EURIBOR_6M = 2.621; // % (valor de referência — atualizar conforme cotação diária)
+    var TAN = SPREAD + EURIBOR_6M;
+
+    function calcPrestacao(capital, prazoAnos, taxaAnualPercent) {
+      var i = (taxaAnualPercent / 100) / 12;
+      var n = prazoAnos * 12;
+      if (i === 0) return capital / n;
+      return capital * i / (1 - Math.pow(1 + i, -n));
     }
-    var prestacao = sessionStorage.getItem('sim_prestacao');
+    function formatEuro(n) {
+      return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+    }
+
+    var capital = parseFloat(sessionStorage.getItem('sim_valor_financiar')) || 250000;
+    var prazo = parseFloat(sessionStorage.getItem('sim_prazo')) || 35;
+    var prestacao = calcPrestacao(capital, prazo, TAN);
+
+    document.getElementById('simPrestacao').textContent = formatEuro(prestacao);
+
     var nome = sessionStorage.getItem('sim_nome');
-    document.getElementById('simPrestacao').textContent = prestacao ? formatEuro(prestacao) : '—';
     if (nome) {
       var first = nome.trim().split(' ')[0];
       document.getElementById('thankyouNome').textContent = ', ' + first;
