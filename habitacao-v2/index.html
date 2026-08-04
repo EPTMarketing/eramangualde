@@ -654,60 +654,6 @@
     initSlider('valor_financiar', 'valor_financiar_display', 'hidden_valor_financiar');
     initSlider('prazo', 'prazo_display', 'hidden_prazo');
 
-    // O valor a financiar nunca pode ultrapassar o valor do imóvel
-    // (mantém o "max" fixo em 1 000 000 nos dois sliders para a escala/posição
-    // visual continuar comparável entre eles; só o valor é limitado)
-    (function () {
-      var imovelSlider = document.getElementById('valor_imovel');
-      var imovelDisplay = document.getElementById('valor_imovel_display');
-      var financiarSlider = document.getElementById('valor_financiar');
-      var financiarDisplay = document.getElementById('valor_financiar_display');
-      var financiarHidden = document.getElementById('hidden_valor_financiar');
-      var grupoValorImovelEl = document.getElementById('grupoValorImovel');
-      if (!imovelSlider || !financiarSlider) return;
-
-      function setFinanciar(valor) {
-        financiarSlider.value = valor;
-        financiarDisplay.value = formatNum(valor);
-        if (financiarHidden) financiarHidden.value = valor;
-        updateSliderFill(financiarSlider);
-      }
-
-      function clampFinanciarToImovel() {
-        // Em "Transferência" o grupo do valor do imóvel fica escondido e o campo
-        // de financiamento passa a representar o capital em dívida atual — não
-        // faz sentido limitá-lo ao valor (oculto) do imóvel.
-        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
-        var tetoImovel = parseFloat(imovelSlider.value);
-        if (parseFloat(financiarSlider.value) > tetoImovel) {
-          setFinanciar(tetoImovel);
-        }
-      }
-
-      // Se o valor do imóvel descer abaixo do financiamento atual, reduz o financiamento
-      imovelSlider.addEventListener('input', clampFinanciarToImovel);
-      imovelDisplay.addEventListener('input', clampFinanciarToImovel);
-      imovelDisplay.addEventListener('blur', clampFinanciarToImovel);
-
-      // Impede arrastar o próprio slider de financiamento acima do valor do imóvel
-      financiarSlider.addEventListener('input', function () {
-        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
-        var tetoImovel = parseFloat(imovelSlider.value);
-        if (parseFloat(financiarSlider.value) > tetoImovel) {
-          setFinanciar(tetoImovel);
-        }
-      });
-      financiarDisplay.addEventListener('blur', function () {
-        if (grupoValorImovelEl && grupoValorImovelEl.hidden) return;
-        var tetoImovel = parseFloat(imovelSlider.value);
-        if (parseFloat(financiarSlider.value) > tetoImovel) {
-          setFinanciar(tetoImovel);
-        }
-      });
-
-      // Validação inicial
-      clampFinanciarToImovel();
-    })();
   </script>
 
   <!-- GCLID / FBCLID Capture -->
