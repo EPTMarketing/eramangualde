@@ -480,7 +480,7 @@ input[type="tel"]:focus {
 /* Último passo — mais espaçoso */
 .wizard-step--spacious { padding-top: 26px; padding-bottom: 14px }
 .wizard-step--spacious .wizard-q { margin-bottom: 24px }
-.wizard-step--spacious .form-group { margin-bottom: 16px }
+.wizard-step--spacious .form-group { margin-bottom: 10px }
 .wizard-step--spacious input[type="text"],
 .wizard-step--spacious input[type="tel"],
 .wizard-step--spacious input[type="email"] { height: 46px; font-size: 14.5px }

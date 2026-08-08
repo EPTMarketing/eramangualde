@@ -79,7 +79,6 @@
 
           <form name="eramangualdehabitacao" method="POST" data-netlify="true" action="/habitacao-v2/send.html" id="leadForm" novalidate>
             <input type="hidden" name="form-name" value="eramangualdehabitacao" />
-            <input type="hidden" name="valor_imovel" id="hidden_valor_imovel" value="250000" />
             <input type="hidden" name="valor_financiar" id="hidden_valor_financiar" value="250000" />
             <input type="hidden" name="prazo" id="hidden_prazo" value="35" />
             <input type="hidden" name="gclid" id="hidden_gclid" value="" />
@@ -176,15 +175,14 @@
               <h2 class="wizard-q" id="step3Title">Calcule a sua mensalidade estimada</h2>
               <div class="simulator-block">
 
-                <div class="slider-group" id="grupoValorImovel">
-                  <div class="slider-header">
-                    <label for="valor_imovel">Valor do imóvel</label>
-                    <div class="slider-val-wrap">
-                      <input type="text" id="valor_imovel_display" class="slider-value-input" value="250 000" inputmode="numeric" />
-                      <span class="slider-currency">€</span>
-                    </div>
-                  </div>
-                  <input type="range" id="valor_imovel" min="50000" max="1000000" step="5000" value="250000" class="era-slider" />
+                <div class="form-group">
+                  <label class="field-label" for="titulares">Nº de titulares *</label>
+                  <select id="titulares" name="titulares" required>
+                    <option value="" disabled selected>Selecionar</option>
+                    <option value="1">1 titular</option>
+                    <option value="2">2 titulares</option>
+                  </select>
+                  <small class="error-message"></small>
                 </div>
 
                 <div class="slider-group">
@@ -213,26 +211,7 @@
 
             <!-- PASSO 4 -->
             <div class="wizard-step" data-step="4">
-              <h2 class="wizard-q">Titulares e rendimento</h2>
-
-              <div class="wizard-row">
-                <div class="form-group">
-                  <label class="field-label" for="titulares">Nº de titulares *</label>
-                  <select id="titulares" name="titulares" required>
-                    <option value="" disabled selected>Selecionar</option>
-                    <option value="1">1 titular</option>
-                    <option value="2">2 titulares</option>
-                  </select>
-                  <small class="error-message"></small>
-                </div>
-                <div class="form-group">
-                  <label class="field-label" for="rendimento">Rendimento líquido mensal (€) *</label>
-                  <input type="number" inputmode="numeric" id="rendimento" name="rendimento" placeholder="Ex: 1800" required />
-                  <small class="error-message"></small>
-                </div>
-              </div>
-
-              <div class="wizard-field-label">Qual é a sua situação profissional?</div>
+              <h2 class="wizard-q">Qual é a sua situação profissional?</h2>
               <div class="option-grid three-col option-grid--compact form-group">
                 <label class="option-card">
                   <input type="radio" name="situacao_profissional" value="Efetivo" required />
@@ -275,25 +254,18 @@
               <div class="titular2-wrap" id="titular2Wrap" hidden>
                 <h4 class="titular2-title">2º titular</h4>
 
-                <div class="wizard-row">
-                  <div class="form-group">
-                    <label class="field-label" for="rendimento2">Rendimento líquido mensal (€) *</label>
-                    <input type="number" inputmode="numeric" id="rendimento2" name="rendimento2" placeholder="Ex: 1200" />
-                    <small class="error-message"></small>
-                  </div>
-                  <div class="form-group">
-                    <label class="field-label" for="situacao_profissional2">Situação profissional *</label>
-                    <select id="situacao_profissional2" name="situacao_profissional2">
-                      <option value="" disabled selected>Selecionar</option>
-                      <option value="Efetivo">Efetivo</option>
-                      <option value="Contrato a termo certo">Contrato a termo certo</option>
-                      <option value="Independente">Independente</option>
-                      <option value="Empresário">Empresário</option>
-                      <option value="Reformado">Reformado</option>
-                      <option value="Outra situação">Outra situação</option>
-                    </select>
-                    <small class="error-message"></small>
-                  </div>
+                <div class="form-group">
+                  <label class="field-label" for="situacao_profissional2">Situação profissional do 2º titular *</label>
+                  <select id="situacao_profissional2" name="situacao_profissional2">
+                    <option value="" disabled selected>Selecionar</option>
+                    <option value="Efetivo">Efetivo</option>
+                    <option value="Contrato a termo certo">Contrato a termo certo</option>
+                    <option value="Independente">Independente</option>
+                    <option value="Empresário">Empresário</option>
+                    <option value="Reformado">Reformado</option>
+                    <option value="Outra situação">Outra situação</option>
+                  </select>
+                  <small class="error-message"></small>
                 </div>
 
                 <div class="form-group" id="outraSituacaoWrapT2" hidden>
@@ -650,7 +622,6 @@
         if (e.key === 'Enter') { e.preventDefault(); display.blur(); }
       });
     }
-    initSlider('valor_imovel', 'valor_imovel_display', 'hidden_valor_imovel');
     initSlider('valor_financiar', 'valor_financiar_display', 'hidden_valor_financiar');
     initSlider('prazo', 'prazo_display', 'hidden_prazo');
 
@@ -705,14 +676,12 @@
       // --- 2º titular toggle (passo 4) ---
       var titularesSelect = document.getElementById('titulares');
       var titular2Wrap = document.getElementById('titular2Wrap');
-      var rendimento2 = document.getElementById('rendimento2');
       var situacao2Select = document.getElementById('situacao_profissional2');
 
       function toggleTitular2() {
         var isDois = titularesSelect && titularesSelect.value === '2';
         if (!titular2Wrap) return;
         titular2Wrap.hidden = !isDois;
-        if (rendimento2) rendimento2.required = !!isDois;
         if (situacao2Select) situacao2Select.required = !!isDois;
         if (!isDois && outraWrapT2) {
           outraWrapT2.hidden = true;
@@ -784,12 +753,10 @@
       // --- Adapta o passo 3 (simulador) quando o objetivo é "Transferência":
       // não faz sentido perguntar o valor do imóvel, só o capital em dívida ---
       var step3Title = document.getElementById('step3Title');
-      var grupoValorImovel = document.getElementById('grupoValorImovel');
       var labelValorFinanciar = document.getElementById('labelValorFinanciar');
       var labelPrazo = document.getElementById('labelPrazo');
 
       function updateStep3Branch(isTransferencia) {
-        if (grupoValorImovel) grupoValorImovel.hidden = isTransferencia;
         if (labelValorFinanciar) labelValorFinanciar.textContent = isTransferencia ? 'Capital em dívida atual' : 'Valor de financiamento desejado';
         if (labelPrazo) labelPrazo.textContent = isTransferencia ? 'Prazo restante do crédito' : 'Prazo';
         if (step3Title) step3Title.textContent = isTransferencia ? 'Indique o capital em dívida atual' : 'Calcule a sua mensalidade estimada';
