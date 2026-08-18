@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Obrigado | ERA Mangualde / Nelas</title>
+  <title>Obrigado | Maxfinance – Tânia Mendes</title>
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/svg+xml" href="logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,35 +16,35 @@
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KTR9FM7G');</script>
+  })(window,document,'script','dataLayer','GTM-TKHTFX28');</script>
   <!-- End Google Tag Manager -->
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N754GLZDEM"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNVKLNK111"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-N754GLZDEM');
-    gtag('event', 'generate_lead', { event_category: 'simulacao_habitacao', event_label: 'crm_habitacao' });
+    gtag('config', 'G-TNVKLNK111');
+    gtag('event', 'generate_lead', { event_category: 'simulacao_credito', event_label: 'crm_credito' });
   </script>
 </head>
 <body class="thankyou-body">
 
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTR9FM7G"
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKHTFX28"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Conversion event: simulação submetida -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({'event': 'lead_habitacao_submit'});
+    dataLayer.push({'event': 'lead_credito_submit'});
   </script>
 
   <main class="thankyou-page">
     <div class="thankyou-card">
-      <img src="logo.svg" alt="ERA Mangualde" class="thankyou-logo" />
+      <img src="logo.svg" alt="Maxfinance – Tânia Mendes" class="thankyou-logo" />
 
       <h1 class="thankyou-title">Obrigado<span id="thankyouNome"></span>! O seu pedido foi recebido.</h1>
       <p class="thankyou-sub">A nossa equipa vai analisar a sua situação e contactá-lo(a) em até <b>48 horas</b> com as melhores propostas.</p>
@@ -99,8 +99,8 @@
 
       <!-- Dados de contacto -->
       <div class="thankyou-contact thankyou-contact--bottom">
-        <p>ERA Mangualde / Nelas</p>
-        <p>Rua do Colégio, nº2 · 3530-184 Mangualde</p>
+        <p><strong>Maxfinance – Tânia Mendes</strong></p>
+        <p>915394919 · taniasmendes@maxfinance.pt</p>
       </div>
     </div>
   </main>
@@ -108,11 +108,21 @@
   <script>
   (function() {
     // ===== Configuração do simulador =====
-    // ATENÇÃO: valores provisórios — substituir pelo spread e indexante
-    // aplicáveis ao crédito habitação da ERA Mangualde/Nelas.
-    var SPREAD = 0.8;       // %
+    // ATENÇÃO: valores provisórios — aproximação genérica para qualquer tipo de
+    // crédito. Substituir pelo spread/TAN reais consoante o crédito solicitado.
+    var SPREAD = 0.8;       // % (crédito habitação)
     var EURIBOR_6M = 2.621; // % (valor de referência — atualizar conforme cotação diária)
-    var TAN = SPREAD + EURIBOR_6M;
+
+    // TAN indicativa por tipo de crédito (habitação mantém o cálculo spread + euribor;
+    // os restantes usam uma TAN fixa de referência, por não serem indexados à euribor)
+    var TAN_POR_TIPO = {
+      'Habitação': SPREAD + EURIBOR_6M,
+      'Pessoal': 8.9,
+      'Automóvel': 7.4,
+      'Consolidado': 7.9
+    };
+    var tipoCredito = sessionStorage.getItem('sim_tipo_credito') || 'Habitação';
+    var TAN = TAN_POR_TIPO[tipoCredito] || TAN_POR_TIPO['Habitação'];
 
     function calcPrestacao(capital, prazoAnos, taxaAnualPercent) {
       var i = (taxaAnualPercent / 100) / 12;
