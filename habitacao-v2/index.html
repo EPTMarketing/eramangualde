@@ -378,7 +378,7 @@
 
           <!-- O Netlify deteta formulários durante o deploy. Este formulário invisível
                regista o segundo destino usado dinamicamente no envio. -->
-          <form name="eramangualdehabitacao_nao_qualificadas" method="POST" data-netlify="true" action="/habitacao-v2/send.html" hidden aria-hidden="true">
+          <form name="eramangualdehabitacao_nao_qualificadas" method="POST" data-netlify="true" action="/habitacao-v2/out.html" hidden aria-hidden="true">
             <input type="hidden" name="form-name" value="eramangualdehabitacao_nao_qualificadas" />
             <input name="objetivo" />
             <input name="fase_imovel" />
@@ -714,6 +714,7 @@
           : 'eramangualdehabitacao_qualificadas';
 
         form.setAttribute('name', formName);
+        form.setAttribute('action', naoQualificada ? '/habitacao-v2/out.html' : '/habitacao-v2/send.html');
         if (netlifyFormName) netlifyFormName.value = formName;
         if (qualificacaoField) qualificacaoField.value = qualificacao;
       }
